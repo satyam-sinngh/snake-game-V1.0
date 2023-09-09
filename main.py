@@ -15,6 +15,7 @@ SNAKE_SPEED = 10
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BLACK= (0,0,0)
 
 # Initialize the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -26,6 +27,9 @@ snake_direction = (1, 0)
 
 # Initialize the food
 food = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+
+# Initialize the score
+score = 0
 
 # Game loop
 running = True
@@ -52,6 +56,7 @@ while running:
     # Check for collisions
     if snake[0] == food:
         food = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+        score += 1
     else:
         snake.pop()
 
@@ -66,7 +71,7 @@ while running:
         running = False
 
     # Clear the screen
-    screen.fill(WHITE)
+    screen.fill(BLACK)
 
     # Draw the snake
     for segment in snake:
@@ -78,6 +83,11 @@ while running:
     pygame.draw.rect(
         screen, RED, (food[0] * GRID_SIZE, food[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE)
     )
+
+    # Display the score
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Score: {score}", True, GREEN)
+    screen.blit(score_text, (10, 10))
 
     # Update the display
     pygame.display.flip()
