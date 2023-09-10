@@ -9,13 +9,14 @@ WIDTH, HEIGHT = 640, 480
 GRID_SIZE = 20
 GRID_WIDTH = WIDTH // GRID_SIZE
 GRID_HEIGHT = HEIGHT // GRID_SIZE
-SNAKE_SPEED = 10
+SNAKE_SPEED = 7
 
 # Colors
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLACK= (0,0,0)
+BLUE = (12,23,67)
 
 # Initialize the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -71,12 +72,12 @@ while running:
         running = False
 
     # Clear the screen
-    screen.fill(BLACK)
+    screen.fill(WHITE)
 
     # Draw the snake
     for segment in snake:
         pygame.draw.rect(
-            screen, GREEN, (segment[0] * GRID_SIZE, segment[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE)
+            screen, BLUE, (segment[0] * GRID_SIZE, segment[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE)
         )
 
     # Draw the food
